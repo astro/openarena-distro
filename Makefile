@@ -40,17 +40,16 @@ dl/am_mappack-a2.zip:
 
 
 # http://tarot.telefragged.com/hh3/
+
 HH3_FILES=altars.cfg dmmap-server.cfg hh.cfg \
 	  hh3-atmosphere.pk3 hh3-general.pk3 hh3-vm.pk3 \
 	  hh3-vm1.pk3 hh3v10_changelog.txt hhmap-server.cfg \
 	  items.cfg orig_hh.cfg readme-help.txt
 
 openarena/hh3/ : FILES=$(addprefix dl/hh3/, $(HH3_FILES))
-#openarena/hh3/: $(FILES)
 openarena/hh3/: $(addprefix dl/hh3/, $(HH3_FILES))
 	mkdir $@
 	cp $(FILES) $@
-
 
 dl/hh3/% : URL=$(join http://spaceboyz.net/~cosmo/openarena/hh3/, $(patsubst dl/hh3/%, %, $@))
 dl/hh3/%:
