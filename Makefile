@@ -10,12 +10,12 @@ $(TORRENT_FILE): DISTRO
 	buildtorrent -C -a http://tracker.thepiratebay.org/announce openarena $@
 
 .PHONY: DISTRO
-DISTRO: openarena openarena/baseoa/z_am_mappack-a2.pk3 openarena/hh3
+DISTRO: openarena openarena/baseoa/z_am_mappack-a2.pk3 openarena/hh3 openarena/hunt
 
 clean:
 	rm -rf openarena openarena-0.8.1 $(TORRENT_FILE)
 
-.DELETE_ON_ERROR: openarena openarena/hh3
+.DELETE_ON_ERROR: openarena openarena/hh3 openarena/hunt
 
 
 # http://openarena.ws/
@@ -55,3 +55,16 @@ dl/hh3/% : URL=$(join http://spaceboyz.net/~cosmo/openarena/hh3/, $(patsubst dl/
 dl/hh3/%:
 	$(WGET) -O $@ $(URL)
 
+
+# http://modifia.planetquake.gamespy.com/hunt/
+
+HUNT_FILES=hunt.pk3 map-efh02.pk3 xoa_textures.pk3
+
+openarena/hunt : FILES=$(addprefix dl/hunt/, $(HUNT_FILES))
+openarena/hunt: $(addprefix dl/hunt/, $(HUNT_FILES))
+	mkdir $@
+	cp $(FILES) $@
+
+dl/hunt/% : URL=$(join http://spaceboyz.net/~cosmo/openarena/hunt/, $(patsubst dl/hunt/%, %, $@))
+dl/hunt/%:
+	$(WGET) -O $@ $(URL)
