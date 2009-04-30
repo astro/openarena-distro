@@ -7,7 +7,7 @@ TORRENT_FILE=openarena-distro-$(DISTRO_VERSION).torrrent
 .DEFAULT: $(TORRENT_FILE)
 
 $(TORRENT_FILE): DISTRO
-	createtorrent -a http://tracker.thepiratebay.org/announce openarena $@
+	buildtorrent -C -a http://tracker.thepiratebay.org/announce openarena $@
 
 .PHONY: DISTRO
 DISTRO: openarena openarena/baseoa/z_am_mappack-a2.pk3 openarena/hh3
