@@ -20,7 +20,7 @@ clean:
 
 # http://openarena.ws/
 
-openarena/: dl/oa081.zip
+openarena: dl/oa081.zip
 	$(UNZIP) $<
 	rm -rf $@
 	mv openarena-0.8.1/ $@
@@ -46,8 +46,8 @@ HH3_FILES=altars.cfg dmmap-server.cfg hh.cfg \
 	  hh3-vm1.pk3 hh3v10_changelog.txt hhmap-server.cfg \
 	  items.cfg orig_hh.cfg readme-help.txt
 
-openarena/hh3/ : FILES=$(addprefix dl/hh3/, $(HH3_FILES))
-openarena/hh3/: $(addprefix dl/hh3/, $(HH3_FILES))
+openarena/hh3 : FILES=$(addprefix dl/hh3/, $(HH3_FILES))
+openarena/hh3: $(addprefix dl/hh3/, $(HH3_FILES))
 	mkdir $@
 	cp $(FILES) $@
 
